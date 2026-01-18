@@ -3,9 +3,10 @@
 	import { browser } from '$app/environment';
 
 	export let enabled = true;
-	export let tailLength = 300; // Fixed tail length in pixels
-	export let qrsPeriod = 1500; // QRS complex every 1.5 seconds (slower)
-	export let numPoints = 150; // High point count for smooth QRS rendering
+	export let maxTrailLength = 300; // Maximum trail length in pixels
+	export let qrsPeriod = 1500; // QRS complex every 1.5 seconds
+	export let fadeDelay = 1500; // Time before trail starts retracting (ms)
+	export let retractDuration = 2000; // How long the retraction takes (ms) - slower for smooth effect
 
 	let viewportWidth = 1;
 	let viewportHeight = 1;
@@ -13,32 +14,32 @@
 	let mouseX = 0;
 	let mouseY = 0;
 	
-	// Track movement direction (smoothed)
-	let dirX = -1; // Default: pointing left
-	let dirY = 0;
-	const smoothing = 0.15; // How quickly direction updates (lower = smoother)
+	// Store actual path points
+	let pathPoints = [];
+	let lastMoveTime = 0;
+	let retractStartTime = 0;
+	let retractStartLength = 0;
+	let isRetracting = false;
+	let visibleLength = 0; // Current visible trail length for smooth retraction
 
 	// EKG waveform: P wave, QRS complex, T wave (tightened timing)
-	// Values represent vertical offset multipliers
 	const ekgWaveform = [
-		{ t: 0.0, y: 0 }, // baseline
-		{ t: 0.05, y: 0 }, // baseline
-		{ t: 0.08, y: 0.1 }, // P wave peak
-		{ t: 0.11, y: 0 }, // end P wave
-		{ t: 0.13, y: 0 }, // PR segment
-		{ t: 0.14, y: -0.15 }, // Q wave
-		{ t: 0.16, y: 1.0 }, // R wave peak
-		{ t: 0.18, y: -0.3 }, // S wave
-		{ t: 0.20, y: 0 }, // end QRS
-		{ t: 0.30, y: 0.18 }, // T wave peak
-		{ t: 0.38, y: 0 }, // end T wave
-		{ t: 1.0, y: 0 } // baseline to next beat
+		{ t: 0.0, y: 0 },
+		{ t: 0.05, y: 0 },
+		{ t: 0.08, y: 0.1 },
+		{ t: 0.11, y: 0 },
+		{ t: 0.13, y: 0 },
+		{ t: 0.14, y: -0.15 },
+		{ t: 0.16, y: 1.0 },
+		{ t: 0.18, y: -0.3 },
+		{ t: 0.20, y: 0 },
+		{ t: 0.30, y: 0.18 },
+		{ t: 0.38, y: 0 },
+		{ t: 1.0, y: 0 }
 	];
 
 	// Interpolate EKG waveform value at a given phase (0-1)
-	// Returns 0 for phases outside 0-1 to ensure only ONE QRS is visible at a time
 	const ekgAt = (phase) => {
-		// Only show waveform for phase 0 to 1 - no wrapping/repeating
 		if (phase < 0 || phase > 1) return 0;
 		
 		for (let i = 0; i < ekgWaveform.length - 1; i++) {
@@ -52,107 +53,264 @@
 		return 0;
 	};
 
-	const updatePosition = (x, y) => {
-		// Calculate movement delta
-		const dx = x - mouseX;
-		const dy = y - mouseY;
-		const len = Math.sqrt(dx * dx + dy * dy);
+	// Calculate total path length
+	const getPathLength = (points) => {
+		let length = 0;
+		for (let i = 1; i < points.length; i++) {
+			const dx = points[i].x - points[i-1].x;
+			const dy = points[i].y - points[i-1].y;
+			length += Math.sqrt(dx * dx + dy * dy);
+		}
+		return length;
+	};
+
+	// Trim path to maximum length, keeping newest points (trims from tail)
+	const trimPath = (points, maxLength) => {
+		if (points.length < 2) return points;
 		
-		// Only update direction if there's meaningful movement
-		if (len > 2) {
-			// Normalize the movement direction
-			const newDirX = dx / len;
-			const newDirY = dy / len;
+		let totalLength = 0;
+		let cutIndex = 0;
+		
+		// Calculate from newest to oldest
+		for (let i = points.length - 1; i > 0; i--) {
+			const dx = points[i].x - points[i-1].x;
+			const dy = points[i].y - points[i-1].y;
+			totalLength += Math.sqrt(dx * dx + dy * dy);
 			
-			// Smooth the direction to avoid jitter
-			dirX = dirX + (newDirX - dirX) * smoothing;
-			dirY = dirY + (newDirY - dirY) * smoothing;
-			
-			// Re-normalize
-			const dirLen = Math.sqrt(dirX * dirX + dirY * dirY);
-			if (dirLen > 0.01) {
-				dirX /= dirLen;
-				dirY /= dirLen;
+			if (totalLength > maxLength) {
+				cutIndex = i;
+				break;
 			}
 		}
 		
-		mouseX = x;
-		mouseY = y;
+		return points.slice(cutIndex);
 	};
 
-	// Generate fixed-length tail points extending behind the cursor
-	// The tail always extends in the opposite direction of movement
-	const generateTailPoints = () => {
-		const points = [];
-		const spacing = tailLength / (numPoints - 1);
+	// Trim path from the start (oldest points), keeping newest - used for retraction
+	const trimPathFromEnd = (points, targetLength) => {
+		if (points.length < 2) return [];
 		
-		for (let i = 0; i < numPoints; i++) {
-			// Distance from cursor (0 = at cursor, tailLength = end of tail)
-			const dist = i * spacing;
+		let totalLength = 0;
+		
+		// Calculate from newest to oldest, keeping points until we reach targetLength
+		for (let i = points.length - 1; i > 0; i--) {
+			const dx = points[i].x - points[i-1].x;
+			const dy = points[i].y - points[i-1].y;
+			totalLength += Math.sqrt(dx * dx + dy * dy);
 			
-			// Tail extends opposite to movement direction
-			points.push({
-				x: mouseX - dirX * dist,
-				y: mouseY - dirY * dist
-			});
+			if (totalLength >= targetLength) {
+				// Interpolate the cut point for smooth retraction
+				const overshoot = totalLength - targetLength;
+				const segLen = Math.sqrt(dx * dx + dy * dy);
+				const t = overshoot / segLen;
+				
+				const interpPoint = {
+					x: points[i].x + (points[i-1].x - points[i].x) * t,
+					y: points[i].y + (points[i-1].y - points[i].y) * t
+				};
+				
+				return [interpPoint, ...points.slice(i)];
+			}
 		}
 		
 		return points;
 	};
 
+	const addPoint = (x, y) => {
+		mouseX = x;
+		mouseY = y;
+		lastMoveTime = performance.now();
+		isRetracting = false;
+		visibleLength = maxTrailLength; // Reset to full visibility when moving
+		
+		// Only add point if it's far enough from the last one
+		if (pathPoints.length > 0) {
+			const last = pathPoints[pathPoints.length - 1];
+			const dx = x - last.x;
+			const dy = y - last.y;
+			const dist = Math.sqrt(dx * dx + dy * dy);
+			
+			// Minimum 2px between points for smooth path
+			if (dist < 2) return;
+		}
+		
+		pathPoints = [...pathPoints, { x, y }];
+		pathPoints = trimPath(pathPoints, maxTrailLength);
+	};
+
+	// Resample path to fixed number of points for smooth EKG
+	const resamplePath = (points, numSamples) => {
+		if (points.length < 2) return points;
+		
+		const totalLength = getPathLength(points);
+		if (totalLength < 1) return points;
+		
+		const result = [];
+		const segmentLength = totalLength / (numSamples - 1);
+		
+		let currentDist = 0;
+		let pointIndex = 0;
+		let segmentDist = 0;
+		
+		result.push({ ...points[0] });
+		
+		for (let i = 1; i < numSamples - 1; i++) {
+			const targetDist = i * segmentLength;
+			
+			while (pointIndex < points.length - 1) {
+				const dx = points[pointIndex + 1].x - points[pointIndex].x;
+				const dy = points[pointIndex + 1].y - points[pointIndex].y;
+				const segLen = Math.sqrt(dx * dx + dy * dy);
+				
+				if (currentDist + segLen >= targetDist) {
+					const t = (targetDist - currentDist) / segLen;
+					result.push({
+						x: points[pointIndex].x + dx * t,
+						y: points[pointIndex].y + dy * t
+					});
+					break;
+				}
+				
+				currentDist += segLen;
+				pointIndex++;
+			}
+		}
+		
+		result.push({ ...points[points.length - 1] });
+		return result;
+	};
+
 	// Amplitude for the EKG waveform
 	const amplitude = 22;
+	const numRenderPoints = 150;
 
-	// Current time for animation - triggers reactivity
+	// Current time for animation
 	let now = 0;
 
 	// Compute polyline with traveling EKG waveform
-	// The QRS complex travels along the trail, away from the cursor toward the tail
 	$: polyline = (() => {
-		const displayPoints = generateTailPoints();
-		if (displayPoints.length === 0) return '';
+		if (pathPoints.length < 2) return '';
+		
+		const displayPoints = resamplePath(pathPoints, numRenderPoints);
+		if (displayPoints.length < 2) return '';
 
 		const pointCount = displayPoints.length;
-
-		// Time phase: 0 to 1 over qrsPeriod, this is when the QRS "fires"
 		const timePhase = (now % qrsPeriod) / qrsPeriod;
 
-		// Calculate perpendicular direction (90 degrees from tail direction)
-		// Tail goes in direction (dirX, dirY), perpendicular is (-dirY, dirX)
-		const perpX = -dirY;
-		const perpY = dirX;
+		// Pre-compute smoothed perpendicular directions to avoid jitter
+		// Average direction across multiple neighboring segments
+		const perpDirs = displayPoints.map((p, i) => {
+			let totalDx = 0, totalDy = 0;
+			let count = 0;
+			
+			// Look at several neighboring segments for smoother direction
+			const lookAhead = 3;
+			for (let j = Math.max(0, i - lookAhead); j < Math.min(pointCount - 1, i + lookAhead); j++) {
+				const dx = displayPoints[j + 1].x - displayPoints[j].x;
+				const dy = displayPoints[j + 1].y - displayPoints[j].y;
+				const len = Math.sqrt(dx * dx + dy * dy);
+				if (len > 0.01) {
+					totalDx += dx / len;
+					totalDy += dy / len;
+					count++;
+				}
+			}
+			
+			if (count > 0) {
+				const avgDx = totalDx / count;
+				const avgDy = totalDy / count;
+				const avgLen = Math.sqrt(avgDx * avgDx + avgDy * avgDy);
+				if (avgLen > 0.01) {
+					// Perpendicular to averaged direction
+					return { x: -avgDy / avgLen, y: avgDx / avgLen };
+				}
+			}
+			
+			return { x: 0, y: 1 }; // default
+		});
 
-		return displayPoints
+		// Calculate cumulative distance from cursor (end of trail) for each point
+		const distances = [0];
+		for (let i = displayPoints.length - 2; i >= 0; i--) {
+			const dx = displayPoints[i].x - displayPoints[i + 1].x;
+			const dy = displayPoints[i].y - displayPoints[i + 1].y;
+			distances.unshift(distances[0] + Math.sqrt(dx * dx + dy * dy));
+		}
+		const totalDist = distances[0];
+
+		// Filter points to only include those within visibleLength from cursor
+		// distances[i] = distance from point i to cursor (0 at cursor, larger at tail)
+		const visiblePoints = [];
+		const visiblePerpDirs = [];
+		const visibleDistFromCursor = [];
+		
+		for (let i = 0; i < displayPoints.length; i++) {
+			// Keep points whose distance from cursor is within visibleLength
+			if (distances[i] <= visibleLength) {
+				visiblePoints.push(displayPoints[i]);
+				visiblePerpDirs.push(perpDirs[i]);
+				visibleDistFromCursor.push(distances[i]);
+			}
+		}
+		
+		if (visiblePoints.length < 2) return '';
+
+		return visiblePoints
 			.map((p, i) => {
-				// Position along trail: 0 = at cursor, 1 = end of tail
-				const positionAlongTrail = i / Math.max(1, pointCount - 1);
+				const perpX = visiblePerpDirs[i].x;
+				const perpY = visiblePerpDirs[i].y;
 
-				// The wave should travel FROM cursor TOWARD the tail end (away from cursor)
+				// Use absolute distance from cursor, normalized by max trail length
+				const positionAlongTrail = visibleDistFromCursor[i] / maxTrailLength;
+
+				// Wave travels from cursor toward tail
 				const phase = positionAlongTrail - timePhase;
 
 				const offset = ekgAt(phase) * amplitude;
 				
-				// Apply offset perpendicular to the tail direction
 				return `${(p.x + perpX * offset).toFixed(1)},${(p.y + perpY * offset).toFixed(1)}`;
 			})
 			.join(' ');
 	})();
 
-	let start = { x: 0, y: 0 };
-	$: {
-		const displayPoints = generateTailPoints();
-		start = displayPoints[displayPoints.length - 1] ?? { x: mouseX, y: mouseY };
-	}
+	$: start = pathPoints.length > 0 ? pathPoints[0] : { x: mouseX, y: mouseY };
 
 	let onMove;
 	let onResize;
 	let animationFrame;
 
-	// Animation loop to update the EKG waveform continuously
+	// Animation loop
 	const animate = () => {
 		now = performance.now();
-		// Trigger reactivity by reassigning direction (causes polyline recalc)
-		dirX = dirX;
+		
+		// Handle retraction after inactivity
+		const timeSinceMove = now - lastMoveTime;
+		if (timeSinceMove > fadeDelay && pathPoints.length > 0) {
+			// Start retraction if not already retracting
+			if (!isRetracting) {
+				isRetracting = true;
+				retractStartTime = now;
+				retractStartLength = getPathLength(pathPoints);
+			}
+			
+			// Calculate how much to retract with ease-out for smooth deceleration
+			const linearProgress = Math.min(1, (now - retractStartTime) / retractDuration);
+			// Ease-out: starts fast, slows down at the end
+			const retractProgress = 1 - Math.pow(1 - linearProgress, 2);
+			
+			// Update visibleLength for smooth rendering
+			visibleLength = retractStartLength * (1 - retractProgress);
+			
+			// Clear path data when fully retracted
+			if (visibleLength < 1) {
+				pathPoints = [];
+				isRetracting = false;
+				visibleLength = 0;
+			}
+		}
+		
+		// Trigger reactivity
+		visibleLength = visibleLength;
 		animationFrame = requestAnimationFrame(animate);
 	};
 
@@ -165,20 +323,19 @@
 		};
 		setSize();
 
-		// Initialize cursor position to center so stethoscope is visible immediately
 		mouseX = viewportWidth / 2;
 		mouseY = viewportHeight / 2;
+		lastMoveTime = performance.now();
 
 		onResize = () => setSize();
 		window.addEventListener('resize', onResize, { passive: true });
 
 		onMove = (e) => {
 			if (!enabled) return;
-			updatePosition(e.clientX, e.clientY);
+			addPoint(e.clientX, e.clientY);
 		};
 		window.addEventListener('mousemove', onMove, { passive: true });
 
-		// Start animation loop
 		animationFrame = requestAnimationFrame(animate);
 	});
 
@@ -246,6 +403,7 @@
 		inset: 0;
 		pointer-events: none;
 		filter: drop-shadow(0 0 12px rgba(101, 247, 255, 0.25));
+		transition: opacity 0.3s ease-out;
 	}
 
 	:global(body.stethoscope-cursor) {

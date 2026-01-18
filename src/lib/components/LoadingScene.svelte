@@ -1,6 +1,7 @@
 <script>
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import { gsap } from 'gsap';
+	import FloatingMath from './FloatingMath.svelte';
 	import NeuralNetwork from './NeuralNetwork.svelte';
 
 	export let targetCount = 12;
@@ -14,6 +15,7 @@
 	let reducedMotion = false;
 
 	const finish = () => {
+		console.log('LoadingScene: finish called', { done });
 		if (done) return;
 		done = true;
 
@@ -22,27 +24,38 @@
 		tl?.kill();
 		tl = gsap.timeline({
 			defaults: { ease: 'power2.out' },
-			onComplete: () => dispatch('complete')
+			onComplete: () => {
+				console.log('LoadingScene: dispatching complete');
+				dispatch('complete');
+			}
 		});
 		tl.to(overlay, { autoAlpha: 0, duration: reducedMotion ? 0.1 : 0.9 });
 	};
 
 	onMount(() => {
+		console.log('LoadingScene: onMount');
+		console.log('LoadingScene: targetCount is', targetCount, typeof targetCount);
 		reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
+		console.log('LoadingScene: reducedMotion detected as', reducedMotion);
+		
 		if (reducedMotion) {
+			console.log('LoadingScene: scheduling immediate finish (reduced motion)');
 			gsap.delayedCall(0.1, finish);
 		} else {
+			console.log('LoadingScene: scheduling watchdog (6.5s)');
 			watchdog = gsap.delayedCall(6.5, finish);
 		}
 	});
 
 	onDestroy(() => {
+		console.log('LoadingScene: onDestroy');
 		tl?.kill();
 		watchdog?.kill();
 	});
 </script>
 
 <div bind:this={overlay} class="overlay" aria-hidden="true">
+	<FloatingMath />
 	<NeuralNetwork {targetCount} onComplete={finish} {reducedMotion} />
 
 	<div class="hud">
@@ -83,6 +96,7 @@
 		position: absolute;
 		left: 24px;
 		bottom: 22px;
+		z-index: 3;
 		color: rgba(210, 255, 255, 0.9);
 		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
 		text-shadow: 0 0 16px rgba(101, 247, 255, 0.22);
