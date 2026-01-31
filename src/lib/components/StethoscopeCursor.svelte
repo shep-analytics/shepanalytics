@@ -13,6 +13,15 @@
 
 	let mouseX = 0;
 	let mouseY = 0;
+
+	let isMobileViewport = false;
+	let mobileTapActive = false;
+	let mobileTapTimeout;
+	let mobileTrailLength = 0;
+
+	const mobileBreakpoint = 768;
+	const mobilePulseDuration = 2000;
+	const mobileEdgePadding = 12;
 	
 	// Store actual path points
 	let pathPoints = [];
@@ -121,7 +130,7 @@
 		mouseY = y;
 		lastMoveTime = performance.now();
 		isRetracting = false;
-		visibleLength = maxTrailLength; // Reset to full visibility when moving
+		visibleLength = activeMaxTrailLength; // Reset to full visibility when moving
 		
 		// Only add point if it's far enough from the last one
 		if (pathPoints.length > 0) {
@@ -135,7 +144,42 @@
 		}
 		
 		pathPoints = [...pathPoints, { x, y }];
-		pathPoints = trimPath(pathPoints, maxTrailLength);
+		pathPoints = trimPath(pathPoints, activeMaxTrailLength);
+	};
+
+	const triggerMobilePulse = (x, y) => {
+		if (!enabled || !isMobileViewport) return;
+
+		mouseX = x;
+		mouseY = y;
+		lastMoveTime = performance.now();
+		isRetracting = false;
+
+		const desiredLength = Math.min(maxTrailLength, viewportWidth * 0.7, 220);
+		const leftSpace = x - mobileEdgePadding;
+		const rightSpace = viewportWidth - x - mobileEdgePadding;
+		const useLeft = leftSpace >= rightSpace;
+		const available = Math.max(0, useLeft ? leftSpace : rightSpace);
+		const trailLength = Math.max(60, Math.min(desiredLength, available));
+		const tailX = useLeft
+			? Math.max(mobileEdgePadding, x - trailLength)
+			: Math.min(viewportWidth - mobileEdgePadding, x + trailLength);
+
+		mobileTrailLength = Math.max(0, Math.abs(x - tailX));
+		pathPoints = [
+			{ x: tailX, y },
+			{ x, y }
+		];
+		visibleLength = mobileTrailLength;
+		mobileTapActive = true;
+
+		if (mobileTapTimeout) clearTimeout(mobileTapTimeout);
+		mobileTapTimeout = setTimeout(() => {
+			mobileTapActive = false;
+			pathPoints = [];
+			visibleLength = 0;
+			mobileTrailLength = 0;
+		}, mobilePulseDuration);
 	};
 
 	// Resample path to fixed number of points for smooth EKG
@@ -183,6 +227,9 @@
 	// Amplitude for the EKG waveform
 	const amplitude = 22;
 	const numRenderPoints = 150;
+
+	$: activeMaxTrailLength =
+		isMobileViewport && mobileTrailLength > 0 ? mobileTrailLength : maxTrailLength;
 
 	// Current time for animation
 	let now = 0;
@@ -261,7 +308,8 @@
 				const perpY = visiblePerpDirs[i].y;
 
 				// Use absolute distance from cursor, normalized by max trail length
-				const positionAlongTrail = visibleDistFromCursor[i] / maxTrailLength;
+				const positionAlongTrail =
+					visibleDistFromCursor[i] / Math.max(1, activeMaxTrailLength);
 
 				// Wave travels from cursor toward tail
 				const phase = positionAlongTrail - timePhase;
@@ -278,12 +326,26 @@
 	let onMove;
 	let onResize;
 	let animationFrame;
+	let onTap;
+	let tapEventType;
 
 	// Animation loop
 	const animate = () => {
 		now = performance.now();
 		
 		// Handle retraction after inactivity
+		if (isMobileViewport) {
+			if (mobileTapActive) {
+				visibleLength = mobileTrailLength;
+			} else if (pathPoints.length > 0) {
+				pathPoints = [];
+				visibleLength = 0;
+			}
+			visibleLength = visibleLength;
+			animationFrame = requestAnimationFrame(animate);
+			return;
+		}
+
 		const timeSinceMove = now - lastMoveTime;
 		if (timeSinceMove > fadeDelay && pathPoints.length > 0) {
 			// Start retraction if not already retracting
@@ -320,6 +382,18 @@
 		const setSize = () => {
 			viewportWidth = Math.max(1, window.innerWidth);
 			viewportHeight = Math.max(1, window.innerHeight);
+			const wasMobile = isMobileViewport;
+			isMobileViewport = viewportWidth <= mobileBreakpoint;
+			if (wasMobile !== isMobileViewport) {
+				mobileTapActive = false;
+				mobileTrailLength = 0;
+				if (mobileTapTimeout) {
+					clearTimeout(mobileTapTimeout);
+					mobileTapTimeout = null;
+				}
+				pathPoints = [];
+				visibleLength = 0;
+			}
 		};
 		setSize();
 
@@ -331,17 +405,32 @@
 		window.addEventListener('resize', onResize, { passive: true });
 
 		onMove = (e) => {
-			if (!enabled) return;
+			if (!enabled || isMobileViewport) return;
 			addPoint(e.clientX, e.clientY);
 		};
 		window.addEventListener('mousemove', onMove, { passive: true });
+
+		onTap = (event) => {
+			if (!enabled || !isMobileViewport) return;
+			const point = event.touches?.[0] ?? event.changedTouches?.[0] ?? event;
+			if (!point) return;
+			triggerMobilePulse(point.clientX, point.clientY);
+		};
+
+		if (window.PointerEvent) {
+			tapEventType = 'pointerdown';
+			window.addEventListener(tapEventType, onTap, { passive: true });
+		} else {
+			tapEventType = 'touchstart';
+			window.addEventListener(tapEventType, onTap, { passive: true });
+		}
 
 		animationFrame = requestAnimationFrame(animate);
 	});
 
 	$: if (browser) {
 		const cls = 'stethoscope-cursor';
-		if (enabled) document.body.classList.add(cls);
+		if (enabled && !isMobileViewport) document.body.classList.add(cls);
 		else document.body.classList.remove(cls);
 	}
 
@@ -349,6 +438,8 @@
 		if (!browser) return;
 		if (onMove) window.removeEventListener('mousemove', onMove);
 		if (onResize) window.removeEventListener('resize', onResize);
+		if (onTap && tapEventType) window.removeEventListener(tapEventType, onTap);
+		if (mobileTapTimeout) clearTimeout(mobileTapTimeout);
 		if (animationFrame) cancelAnimationFrame(animationFrame);
 		document.body.classList.remove('stethoscope-cursor');
 	});
@@ -385,7 +476,10 @@
 		stroke-linejoin="round"
 	/>
 
-	<g transform={`translate(${mouseX} ${mouseY})`} opacity={enabled ? 1 : 0}>
+	<g
+		transform={`translate(${mouseX} ${mouseY})`}
+		opacity={enabled && (!isMobileViewport || mobileTapActive) ? 1 : 0}
+	>
 		<!-- small heart shape -->
 		<path
 			d="M 0 3 C -1.5 0, -5 0, -5 -3 C -5 -6, -2.5 -7, 0 -4.5 C 2.5 -7, 5 -6, 5 -3 C 5 0, 1.5 0, 0 3 Z"
