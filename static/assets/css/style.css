@@ -264,23 +264,25 @@ h6 {
   font-family: "Poppins", sans-serif;
 }
 
-#hero p span {
+#hero .typed-wrapper {
+  display: inline-block;
+  white-space: nowrap;
+  min-width: var(--typed-min-width, 0px);
+}
+
+#hero .typed {
+  display: inline-block;
   color: #fff;
   padding-bottom: 4px;
   letter-spacing: 1px;
   border-bottom: 3px solid #149ddd;
 }
 
-#hero .typed {
-  display: inline-block;
-  white-space: nowrap;
-  min-width: var(--typed-min-width, 0px);
-}
-
 #hero .typed-cursor {
   display: inline-block;
-  width: 1ch;
   margin-left: 2px;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 #hero .hero-actions {
@@ -2521,6 +2523,13 @@ section {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(20, 157, 221, 0.3);
   color: #fff;
+}
+
+.patient-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .patient-note {

@@ -10,6 +10,7 @@
 		// Initialize Typed.js for the hero section
 		const typedElement = document.querySelector('.typed');
 		if (typedElement) {
+			const typedWrapper = typedElement.closest('.typed-wrapper') || typedElement;
 			const typedStrings = (typedElement.getAttribute('data-typed-items') || '')
 				.split(',')
 				.map((text) => text.trim())
@@ -48,7 +49,7 @@
 
 				measure.remove();
 				if (maxWidth > 0) {
-					typedElement.style.setProperty('--typed-min-width', `${Math.ceil(maxWidth)}px`);
+					typedWrapper.style.setProperty('--typed-min-width', `${Math.ceil(maxWidth)}px`);
 				}
 			};
 
@@ -184,8 +185,8 @@
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
       <h1>Alex Sheppert, DO, PhD, MBA</h1>
-      <p>I'm a <span class="typed"
-          data-typed-items="Physician building AI for healthcare, Clinical AI researcher, Healthcare technology founder, Physician-engineer"></span>
+      <p>I'm a <span class="typed-wrapper"><span class="typed"
+          data-typed-items="Physician building AI for healthcare, Clinical AI researcher, Healthcare technology founder, Physician-engineer"></span></span>
       </p>
     </div>
     <div class="hero-actions">
@@ -303,14 +304,6 @@
 
       </div>
     </section><!-- End Blog Section -->
-
-    <!-- ======= For Patients Link ======= -->
-    <section id="patients-link" class="patients-link">
-      <div class="container text-center">
-        <a href="/patients" class="hero-button">for current patients</a>
-      </div>
-    </section>
-
 
   </main><!-- End #main -->
 

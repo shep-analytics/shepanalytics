@@ -105,17 +105,22 @@
 				</div>
 
 				<div class="patient-card">
-					<h3>MyChart</h3>
-					<p>For non-urgent communication, feel free to message me through MyChart. You can use MyChart to:</p>
+					<h3>Patient Portals</h3>
+					<p>For non-urgent communication, you can message through the appropriate patient portal:</p>
 					<ul>
 						<li>Send non-urgent messages to your care team</li>
 						<li>View test results and medical records</li>
 						<li>Request prescription refills</li>
 						<li>Schedule appointments</li>
 					</ul>
-					<a href="https://mychart.tvc.org/" target="_blank" rel="noopener noreferrer" class="patient-button">
-						<i class="bi bi-box-arrow-up-right"></i> Go to MyChart
-					</a>
+					<div class="patient-buttons">
+						<a href="https://mychart.tvc.org/" target="_blank" rel="noopener noreferrer" class="patient-button">
+							<i class="bi bi-box-arrow-up-right"></i> Vancouver Clinic MyChart
+						</a>
+						<a href="https://myhealth.lhs.org/" target="_blank" rel="noopener noreferrer" class="patient-button">
+							<i class="bi bi-box-arrow-up-right"></i> Legacy MyHealth
+						</a>
+					</div>
 				</div>
 
 				<div class="patient-note">
