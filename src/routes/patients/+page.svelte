@@ -48,7 +48,7 @@
 
 			<div class="section-title">
 				<h2>For Current Patients</h2>
-				<p>Information for patients under my care.</p>
+				<p>For patients under my care at the Vancouver Clinic.</p>
 			</div>
 
 			<div class="patient-content" data-aos="fade-up">
@@ -68,7 +68,7 @@
 					<div class="practice-locations">
 						<div class="practice-location">
 							<div class="practice-location__icon">
-								<i class="bi bi-hospital"></i>
+								<i class="bi bi-activity"></i>
 							</div>
 							<div class="practice-location__content">
 								<h4>Legacy Salmon Creek Medical Center</h4>
