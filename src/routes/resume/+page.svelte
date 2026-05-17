@@ -159,6 +159,7 @@
 					<div class="resume-item">
 						<h4>Peer Reviewed Articles</h4>
 						<ul>
+							<li><a href="https://doi.org/10.3389/frai.2026.1794271">"Techniques for mitigating overfitting in machine learning: a comprehensive review, taxonomy, and practical guide,"</a> Frontiers in Artificial Intelligence, Vol 9, 2026</li>
 							<li><a href="https://doi.org/10.3390/jrfm19010060">"The GT-Score: A Robust Objective Function for Reducing Overfitting in Data-Driven Trading Strategies,"</a> Journal of Risk and Financial Management, Vol 19, Issue 1, January 2026</li>
 							<li><a href="https://doi.org/10.1021/acs.jpca.3c03389">"Structural analysis of non-native peptide-based catalysts using 2D NMR-guided MD simulations,"</a> The Journal of Physical Chemistry A, Vol 127, 2023</li>
 							<li><a href="https://doi.org/10.3389/fmed.2024.1452465">"Effectiveness of osteopathic craniosacral techniques: a meta-analysis,"</a> Frontiers in Medicine, 2024</li>
@@ -173,6 +174,13 @@
 							<li><a href="https://core.ac.uk/download/492765904.pdf">"Number of active social media users as a predictor of HIPAA infringements,"</a> Roseman Research Symposium 2022</li>
 							<li>"A Case of Recurrent UTIs and Acute Appendicitis in a Patient with a History of Appendectomy," Noorda Research Symposium 2024</li>
 							<li>"Pigtail Catheter Retention in emergent thoracostomy: A Case Review," ACOS Annual Clinical Assembly 2022 (<a href="https://www.eventScribe.com/upload/planner/PDFs/2022ACAProgramBook_Digital_86.pdf">program book</a>)</li>
+						</ul>
+					</div>
+
+					<div class="resume-item">
+						<h4>Invited Talks & Presentations</h4>
+						<ul>
+							<li><a href="https://www.facebook.com/MaticInsideAI/photos/alex-sheppert-returned-to-the-noorda-college-of-osteopathic-medicine-campus-foll/863685466742846/">"AI in Medicine,"</a> Monthly Research Lecture Series, <a href="https://noorda.edu/">Noorda College of Osteopathic Medicine</a>, April 2026</li>
 						</ul>
 					</div>
 
