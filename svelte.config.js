@@ -6,7 +6,10 @@ const config = {
 		adapter: adapter({
 			pages: 'dist',
 			assets: 'dist'
-		})
+		}),
+		paths: {
+			relative: false
+		}
 	}
 };
 
