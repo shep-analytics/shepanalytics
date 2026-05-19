@@ -178,6 +178,13 @@
 					</div>
 
 					<div class="resume-item">
+						<h4>Forbes Articles</h4>
+						<ul>
+							<li><a href="https://www.forbes.com/councils/forbestechcouncil/2026/02/25/taste-the-most-valuable-skill-in-the-new-world-ai-economy/">"Taste: The Most Valuable Skill In The New World AI Economy,"</a> Forbes Technology Council, February 2026</li>
+						</ul>
+					</div>
+
+					<div class="resume-item">
 						<h4>Invited Talks & Presentations</h4>
 						<ul>
 							<li><a href="https://www.facebook.com/MaticInsideAI/photos/alex-sheppert-returned-to-the-noorda-college-of-osteopathic-medicine-campus-foll/863685466742846/">"AI in Medicine,"</a> Monthly Research Lecture Series, <a href="https://noorda.edu/">Noorda College of Osteopathic Medicine</a>, April 2026</li>
