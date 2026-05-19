@@ -53,7 +53,19 @@
 
 			<div class="blog-grid">
 
-				<a href="https://x.com/alexsheppert/status/1930432235183780202" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up">
+				<a href="https://www.forbes.com/councils/forbestechcouncil/2026/02/25/taste-the-most-valuable-skill-in-the-new-world-ai-economy/" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up">
+					<article class="blog-card">
+						<div class="blog-card__meta">
+							<span class="blog-card__tag">Forbes</span>
+							<span class="blog-card__date">Feb 25, 2026</span>
+						</div>
+						<h3>Taste: The Most Valuable Skill In The New World AI Economy</h3>
+						<p>Forbes Technology Council piece arguing that as AI commoditizes execution, judgment and taste — knowing what is worth building — become the scarce, defining skill.</p>
+						<span class="blog-card__link">Read on Forbes <i class="bi bi-arrow-right"></i></span>
+					</article>
+				</a>
+
+				<a href="https://x.com/alexsheppert/status/1930432235183780202" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="100">
 					<article class="blog-card">
 						<div class="blog-card__meta">
 							<span class="blog-card__tag">Psychology</span>
@@ -65,7 +77,7 @@
 					</article>
 				</a>
 
-				<a href="https://x.com/alexsheppert/status/1944538619924070721" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="100">
+				<a href="https://x.com/alexsheppert/status/1944538619924070721" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="200">
 					<article class="blog-card">
 						<div class="blog-card__meta">
 							<span class="blog-card__tag">AI Philosophy</span>
@@ -77,7 +89,7 @@
 					</article>
 				</a>
 
-				<a href="https://x.com/alexsheppert/status/1996430767090717080" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="200">
+				<a href="https://x.com/alexsheppert/status/1996430767090717080" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="300">
 					<article class="blog-card">
 						<div class="blog-card__meta">
 							<span class="blog-card__tag">History</span>
@@ -89,7 +101,7 @@
 					</article>
 				</a>
 
-				<a href="https://x.com/alexsheppert/status/1965205998823673961" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="300">
+				<a href="https://x.com/alexsheppert/status/1965205998823673961" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="400">
 					<article class="blog-card">
 						<div class="blog-card__meta">
 							<span class="blog-card__tag">Statistics</span>
@@ -101,7 +113,7 @@
 					</article>
 				</a>
 
-				<a href="https://x.com/alexsheppert/status/1951012784139010223" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="400">
+				<a href="https://x.com/alexsheppert/status/1951012784139010223" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up" data-aos-delay="500">
 					<article class="blog-card">
 						<div class="blog-card__meta">
 							<span class="blog-card__tag">Healthcare AI</span>

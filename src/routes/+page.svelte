@@ -258,15 +258,15 @@
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-            <a href="https://x.com/alexsheppert/status/1930432235183780202" target="_blank" rel="noopener noreferrer" class="blog-card-link">
+            <a href="https://www.forbes.com/councils/forbestechcouncil/2026/02/25/taste-the-most-valuable-skill-in-the-new-world-ai-economy/" target="_blank" rel="noopener noreferrer" class="blog-card-link">
               <article class="blog-card">
                 <div class="blog-card__meta">
-                  <span class="blog-card__tag">Psychology</span>
-                  <span class="blog-card__date">Jun 4, 2025</span>
+                  <span class="blog-card__tag">Forbes</span>
+                  <span class="blog-card__date">Feb 25, 2026</span>
                 </div>
-                <h3>IQ is not a Very Good Measure of Extreme Intelligence</h3>
-                <p>Why IQ tests fail to capture high-end ability and overstate what they measure at the extremes.</p>
-                <span class="blog-card__link">Read on X -></span>
+                <h3>Taste: The Most Valuable Skill In The New World AI Economy</h3>
+                <p>As AI commoditizes execution, judgment and taste — knowing what is worth building — become the scarce, defining skill.</p>
+                <span class="blog-card__link">Read on Forbes -></span>
               </article>
             </a>
           </div>
