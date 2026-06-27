@@ -1,10 +1,10 @@
 <svelte:head>
 	<title>Work With Me - Alex Sheppert</title>
 	<meta name="description" content="Work with Alex Sheppert, DO/PhD/MBA — consulting, advisory, and speaking inquiries in clinical AI and healthcare technology." />
-	<link rel="canonical" href="https://alexsheppert.com/contact" />
+	<link rel="canonical" href="https://www.alexsheppert.com/contact" />
 	<meta property="og:title" content="Work With Me - Alex Sheppert" />
 	<meta property="og:description" content="Work with Alex Sheppert, DO/PhD/MBA — consulting, advisory, and speaking inquiries in clinical AI and healthcare technology." />
-	<meta property="og:url" content="https://alexsheppert.com/contact" />
+	<meta property="og:url" content="https://www.alexsheppert.com/contact" />
 	<meta name="twitter:title" content="Work With Me - Alex Sheppert" />
 	<meta name="twitter:description" content="Work with Alex Sheppert, DO/PhD/MBA — consulting, advisory, and speaking inquiries in clinical AI and healthcare technology." />
 </svelte:head>

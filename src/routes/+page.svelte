@@ -153,13 +153,13 @@
 <svelte:head>
 	<title>Alex Sheppert - DO, PhD, MBA</title>
 	<meta name="description" content="Alex Sheppert, DO/PhD/MBA — physician-engineer building AI for healthcare. Portfolio, writing, and resume." />
-	<link rel="canonical" href="https://alexsheppert.com/" />
+	<link rel="canonical" href="https://www.alexsheppert.com/" />
 	<meta property="og:title" content="Alex Sheppert - DO, PhD, MBA" />
 	<meta property="og:description" content="Alex Sheppert, DO/PhD/MBA — physician-engineer building AI for healthcare. Portfolio, writing, and resume." />
-	<meta property="og:url" content="https://alexsheppert.com/" />
+	<meta property="og:url" content="https://www.alexsheppert.com/" />
 	<meta name="twitter:title" content="Alex Sheppert - DO, PhD, MBA" />
 	<meta name="twitter:description" content="Alex Sheppert, DO/PhD/MBA — physician-engineer building AI for healthcare. Portfolio, writing, and resume." />
-	{@html `<script type="application/ld+json">${JSON.stringify({"@context":"https://schema.org","@type":"Person","name":"Alex Sheppert","honorificSuffix":"DO, PhD, MBA","jobTitle":"Physician-Engineer","url":"https://alexsheppert.com","image":"https://alexsheppert.com/assets/img/headshot.jpg","worksFor":{"@type":"Organization","name":"Matic Inside"},"sameAs":["https://x.com/alexsheppert","https://www.linkedin.com/in/alex-sheppert","https://github.com/shep-analytics"]})}<\/script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify({"@context":"https://schema.org","@type":"Person","name":"Alex Sheppert","honorificSuffix":"DO, PhD, MBA","jobTitle":"Physician-Engineer","url":"https://www.alexsheppert.com","image":"https://www.alexsheppert.com/assets/img/headshot.jpg","worksFor":{"@type":"Organization","name":"Matic Inside"},"sameAs":["https://x.com/alexsheppert","https://www.linkedin.com/in/alex-sheppert","https://github.com/shep-analytics"]})}<\/script>`}
 </svelte:head>
 
 <!-- ======= Header ======= -->

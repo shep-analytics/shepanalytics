@@ -1,10 +1,10 @@
 <svelte:head>
 	<title>Blog - Alex Sheppert</title>
 	<meta name="description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
-	<link rel="canonical" href="https://alexsheppert.com/blog" />
+	<link rel="canonical" href="https://www.alexsheppert.com/blog" />
 	<meta property="og:title" content="Blog - Alex Sheppert" />
 	<meta property="og:description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
-	<meta property="og:url" content="https://alexsheppert.com/blog" />
+	<meta property="og:url" content="https://www.alexsheppert.com/blog" />
 	<meta name="twitter:title" content="Blog - Alex Sheppert" />
 	<meta name="twitter:description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
 </svelte:head>

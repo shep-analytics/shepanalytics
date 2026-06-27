@@ -1,10 +1,10 @@
 <svelte:head>
 	<title>Resume - Alex Sheppert</title>
 	<meta name="description" content="Resume of Alex Sheppert, DO/PhD/MBA — internal medicine physician, AI researcher, and healthcare technology founder." />
-	<link rel="canonical" href="https://alexsheppert.com/resume" />
+	<link rel="canonical" href="https://www.alexsheppert.com/resume" />
 	<meta property="og:title" content="Resume - Alex Sheppert" />
 	<meta property="og:description" content="Resume of Alex Sheppert, DO/PhD/MBA — internal medicine physician, AI researcher, and healthcare technology founder." />
-	<meta property="og:url" content="https://alexsheppert.com/resume" />
+	<meta property="og:url" content="https://www.alexsheppert.com/resume" />
 	<meta name="twitter:title" content="Resume - Alex Sheppert" />
 	<meta name="twitter:description" content="Resume of Alex Sheppert, DO/PhD/MBA — internal medicine physician, AI researcher, and healthcare technology founder." />
 </svelte:head>

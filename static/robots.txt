@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alexsheppert.com/sitemap.xml
+Sitemap: https://www.alexsheppert.com/sitemap.xml

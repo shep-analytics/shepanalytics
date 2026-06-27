@@ -1,10 +1,10 @@
 <svelte:head>
 	<title>For Patients - Alex Sheppert, DO</title>
 	<meta name="description" content="Information for current patients of Dr. Alex Sheppert, DO." />
-	<link rel="canonical" href="https://alexsheppert.com/patients" />
+	<link rel="canonical" href="https://www.alexsheppert.com/patients" />
 	<meta property="og:title" content="For Patients - Alex Sheppert, DO" />
 	<meta property="og:description" content="Information for current patients of Dr. Alex Sheppert, DO." />
-	<meta property="og:url" content="https://alexsheppert.com/patients" />
+	<meta property="og:url" content="https://www.alexsheppert.com/patients" />
 	<meta name="twitter:title" content="For Patients - Alex Sheppert, DO" />
 	<meta name="twitter:description" content="Information for current patients of Dr. Alex Sheppert, DO." />
 </svelte:head>
