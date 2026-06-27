@@ -2,6 +2,7 @@ node_modules/
 dist/
 .vite/
 .svelte-kit/
+.vercel/
 
 .DS_Store
 npm-debug.log*

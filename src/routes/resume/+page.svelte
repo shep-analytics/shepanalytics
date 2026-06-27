@@ -159,6 +159,9 @@
 					<div class="resume-item">
 						<h4>Peer Reviewed Articles</h4>
 						<ul>
+							<li><a href="https://doi.org/10.1093/jamia/ocag069">"Reasoning or reciting? A temporal contamination audit of large language models in clinical medicine,"</a> Journal of the American Medical Informatics Association (JAMIA), 2026</li>
+							<li><a href="https://doi.org/10.1016/j.ijmedinf.2026.106550">"Large language models exhibit greater diagnostic anchoring than physicians in a forced-choice vignette study,"</a> International Journal of Medical Informatics, Vol 219, 2026</li>
+							<li><a href="https://doi.org/10.7759/cureus.111172">"Rethinking Serotonin in Depression: Toward a Modern Clinical Framework,"</a> Cureus Journal of Medical Science (Editorial), 2026</li>
 							<li><a href="https://doi.org/10.3389/frai.2026.1794271">"Techniques for mitigating overfitting in machine learning: a comprehensive review, taxonomy, and practical guide,"</a> Frontiers in Artificial Intelligence, Vol 9, 2026</li>
 							<li><a href="https://doi.org/10.3390/jrfm19010060">"The GT-Score: A Robust Objective Function for Reducing Overfitting in Data-Driven Trading Strategies,"</a> Journal of Risk and Financial Management, Vol 19, Issue 1, January 2026</li>
 							<li><a href="https://doi.org/10.1021/acs.jpca.3c03389">"Structural analysis of non-native peptide-based catalysts using 2D NMR-guided MD simulations,"</a> The Journal of Physical Chemistry A, Vol 127, 2023</li>
@@ -187,6 +190,7 @@
 					<div class="resume-item">
 						<h4>Invited Talks & Presentations</h4>
 						<ul>
+							<li><a href="https://ce.bswhealth.com/2026julianwells#group-tabs-node-course-default2">"AI in Medicine,"</a> Julian Wells Lectureship, Baylor University Medical Center, June 2026</li>
 							<li><a href="https://www.facebook.com/MaticInsideAI/photos/alex-sheppert-returned-to-the-noorda-college-of-osteopathic-medicine-campus-foll/863685466742846/">"AI in Medicine,"</a> Monthly Research Lecture Series, <a href="https://noorda.edu/">Noorda College of Osteopathic Medicine</a>, April 2026</li>
 						</ul>
 					</div>
