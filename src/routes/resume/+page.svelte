@@ -1,17 +1,24 @@
 <svelte:head>
 	<title>Resume - Alex Sheppert</title>
+	<meta name="description" content="Resume of Alex Sheppert, DO/PhD/MBA — internal medicine physician, AI researcher, and healthcare technology founder." />
+	<link rel="canonical" href="https://alexsheppert.com/resume" />
+	<meta property="og:title" content="Resume - Alex Sheppert" />
+	<meta property="og:description" content="Resume of Alex Sheppert, DO/PhD/MBA — internal medicine physician, AI researcher, and healthcare technology founder." />
+	<meta property="og:url" content="https://alexsheppert.com/resume" />
+	<meta name="twitter:title" content="Resume - Alex Sheppert" />
+	<meta name="twitter:description" content="Resume of Alex Sheppert, DO/PhD/MBA — internal medicine physician, AI researcher, and healthcare technology founder." />
 </svelte:head>
 
 <!-- ======= Header ======= -->
 <header id="header">
 	<div class="d-flex flex-column">
 		<div class="profile">
-			<img src="/assets/img/headshot.png" alt="" class="img-fluid rounded-circle">
+			<img src="/assets/img/headshot.jpg" alt="" class="img-fluid rounded-circle">
 			<h1 class="text-light"><a href="/">Alex Sheppert, DO, PhD, MBA</a></h1>
 			<div class="social-links mt-3 text-center">
-				<a href="https://x.com/alexsheppert" class="twitter"><i class="bx bxl-twitter"></i></a>
-				<a href="https://www.linkedin.com/in/alex-sheppert" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-				<a href="https://github.com/shep-analytics" class="github"><i class="bx bxl-github"></i></a>
+				<a href="https://x.com/alexsheppert" class="twitter" aria-label="X (Twitter)"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+				<a href="https://www.linkedin.com/in/alex-sheppert" class="linkedin" aria-label="LinkedIn"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+				<a href="https://github.com/shep-analytics" class="github" aria-label="GitHub"><i class="bx bxl-github" aria-hidden="true"></i></a>
 			</div>
 		</div>
 
@@ -172,9 +179,9 @@
 					<div class="resume-item">
 						<h4>Conference Publications</h4>
 						<ul>
-							<li><a href="https://core.ac.uk/download/555493534.pdf">"Prediction of migraine status from cervical radiographs using a machine learning model,"</a> Roseman Research Symposium 2023</li>
+							<li>"Prediction of migraine status from cervical radiographs using a machine learning model," Roseman Research Symposium 2023</li>
 							<li>"Ketamine vs etomidate as an induction agent in RSI in patients with COVID-19," AAEM Scientific Assembly 2024 (<a href="https://www.aaem.org/wp-content/uploads/2024/04/Poster-Listing-FINAL-LISTING.pdf">poster listing</a>)</li>
-							<li><a href="https://core.ac.uk/download/492765904.pdf">"Number of active social media users as a predictor of HIPAA infringements,"</a> Roseman Research Symposium 2022</li>
+							<li>"Number of active social media users as a predictor of HIPAA infringements," Roseman Research Symposium 2022</li>
 							<li>"A Case of Recurrent UTIs and Acute Appendicitis in a Patient with a History of Appendectomy," Noorda Research Symposium 2024</li>
 							<li>"Pigtail Catheter Retention in emergent thoracostomy: A Case Review," ACOS Annual Clinical Assembly 2022 (<a href="https://www.eventScribe.com/upload/planner/PDFs/2022ACAProgramBook_Digital_86.pdf">program book</a>)</li>
 						</ul>
@@ -418,4 +425,4 @@
 
 </main>
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#header" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>

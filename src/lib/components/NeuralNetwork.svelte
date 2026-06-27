@@ -8,7 +8,6 @@
 	import Neuron from './Neuron.svelte';
 	import Pulse from './Pulse.svelte';
 
-	console.log('NeuralNetwork: Script executing');
 
 	export let targetCount = 12;
 	export let onComplete = () => {};
@@ -171,16 +170,13 @@
 	};
 
 	const scheduleComplete = () => {
-		console.log('NeuralNetwork: scheduleComplete called (start 0.9s delay)');
 		completeCall?.kill?.();
 		completeCall = gsap.delayedCall(0.9, () => {
-			console.log('NeuralNetwork: executing onComplete callback');
 			onComplete();
 		});
 	};
 
 	onMount(() => {
-		console.log('NeuralNetwork: onMount called');
 		const updateSize = () => {
 			containerWidth = Math.max(1, window.innerWidth);
 			containerHeight = Math.max(1, window.innerHeight);
@@ -189,20 +185,16 @@
 		dpr = Math.min(1.5, window.devicePixelRatio || 1);
 		onResize = () => updateSize();
 		window.addEventListener('resize', onResize, { passive: true });
-		console.log('NeuralNetwork: container dimensions', containerWidth, containerHeight);
 		mounted = true;
-		console.log('NeuralNetwork: mounted set to true, reducedMotion:', reducedMotion);
 
 		if (reducedMotion) {
 			// Skip animation, complete immediately
-			console.log('NeuralNetwork: reducedMotion is true, scheduling complete');
 			// disable for debugging:
 			// scheduleComplete();
 			return;
 		}
 
 		const spawnWave = () => {
-			console.log('NeuralNetwork: wave check. neurons:', neurons.length, 'targetCount:', targetCount);
 			const runFinalWave = !finalWaveDone && neurons.length >= targetCount;
 			const maxNodes = runFinalWave ? targetCount * 2 : targetCount;
 
@@ -241,7 +233,6 @@
 
 			if (runFinalWave) {
 				finalWaveDone = true;
-				console.log('NeuralNetwork: final wave complete');
 				clearInterval(spawnTimer);
 				spawnTimer = null;
 				scheduleComplete();
@@ -271,7 +262,7 @@
 			size={{ width: Math.max(1, containerWidth), height: Math.max(1, containerHeight) }}
 			rendererParameters={{ alpha: true, antialias: true }}
 		>
-			<T.PerspectiveCamera makeDefault position={[0, 0, 7]} fov={48} near={0.1} far={80} on:create={({ref}) => console.log('Camera created', ref)} />
+			<T.PerspectiveCamera makeDefault position={[0, 0, 7]} fov={48} near={0.1} far={80} />
 			<T.AmbientLight intensity={0.25} />
 
 			<!-- DEBUG OBJECTS -->

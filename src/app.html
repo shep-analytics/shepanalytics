@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#040b14" />
 
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
 		<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2" />
@@ -10,8 +11,10 @@
 		<link rel="shortcut icon" href="/favicon.ico?v=2" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
 
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap"
 			rel="stylesheet"
 		/>
 
@@ -22,10 +25,14 @@
 			rel="stylesheet"
 		/>
 		<link href="%sveltekit.assets%/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
-		<link href="%sveltekit.assets%/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
-		<link href="%sveltekit.assets%/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
 		<link href="%sveltekit.assets%/assets/css/style.css" rel="stylesheet" />
+
+		<meta property="og:site_name" content="Alex Sheppert" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="https://alexsheppert.com/assets/img/og-share.jpg" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content="https://alexsheppert.com/assets/img/og-share.jpg" />
 
 		%sveltekit.head%
 	</head>
@@ -35,12 +42,8 @@
 		<script defer src="%sveltekit.assets%/assets/vendor/purecounter/purecounter.js"></script>
 		<script defer src="%sveltekit.assets%/assets/vendor/aos/aos.js"></script>
 		<script defer src="%sveltekit.assets%/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script defer src="%sveltekit.assets%/assets/vendor/glightbox/js/glightbox.min.js"></script>
-		<script defer src="%sveltekit.assets%/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-		<script defer src="%sveltekit.assets%/assets/vendor/swiper/swiper-bundle.min.js"></script>
 		<script defer src="%sveltekit.assets%/assets/vendor/typed.js/typed.min.js"></script>
 		<script defer src="%sveltekit.assets%/assets/vendor/waypoints/noframework.waypoints.js"></script>
-		<script defer src="%sveltekit.assets%/assets/vendor/php-email-form/validate.js"></script>
 		<script defer src="%sveltekit.assets%/assets/js/main.js"></script>
 	</body>
 </html>

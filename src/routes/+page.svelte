@@ -152,6 +152,14 @@
 
 <svelte:head>
 	<title>Alex Sheppert - DO, PhD, MBA</title>
+	<meta name="description" content="Alex Sheppert, DO/PhD/MBA — physician-engineer building AI for healthcare. Portfolio, writing, and resume." />
+	<link rel="canonical" href="https://alexsheppert.com/" />
+	<meta property="og:title" content="Alex Sheppert - DO, PhD, MBA" />
+	<meta property="og:description" content="Alex Sheppert, DO/PhD/MBA — physician-engineer building AI for healthcare. Portfolio, writing, and resume." />
+	<meta property="og:url" content="https://alexsheppert.com/" />
+	<meta name="twitter:title" content="Alex Sheppert - DO, PhD, MBA" />
+	<meta name="twitter:description" content="Alex Sheppert, DO/PhD/MBA — physician-engineer building AI for healthcare. Portfolio, writing, and resume." />
+	{@html `<script type="application/ld+json">${JSON.stringify({"@context":"https://schema.org","@type":"Person","name":"Alex Sheppert","honorificSuffix":"DO, PhD, MBA","jobTitle":"Physician-Engineer","url":"https://alexsheppert.com","image":"https://alexsheppert.com/assets/img/headshot.jpg","worksFor":{"@type":"Organization","name":"Matic Inside"},"sameAs":["https://x.com/alexsheppert","https://www.linkedin.com/in/alex-sheppert","https://github.com/shep-analytics"]})}<\/script>`}
 </svelte:head>
 
 <!-- ======= Header ======= -->
@@ -159,12 +167,12 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src="/assets/img/headshot.png" alt="" class="img-fluid rounded-circle">
+        <img src="/assets/img/headshot.jpg" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="/">Alex Sheppert, DO, PhD, MBA</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="https://x.com/alexsheppert" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://www.linkedin.com/in/alex-sheppert" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/shep-analytics" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://x.com/alexsheppert" class="twitter" aria-label="X (Twitter)"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/alex-sheppert" class="linkedin" aria-label="LinkedIn"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+          <a href="https://github.com/shep-analytics" class="github" aria-label="GitHub"><i class="bx bxl-github" aria-hidden="true"></i></a>
         </div>
       </div>
 
@@ -184,7 +192,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
-      <h1>Alex Sheppert, DO, PhD, MBA</h1>
+      <div class="hero-title">Alex Sheppert, DO, PhD, MBA</div>
       <p>I'm a <span class="typed-wrapper"><span class="typed"
           data-typed-items="Physician building AI for healthcare, Clinical AI researcher, Healthcare technology founder, Physician-engineer"></span></span>
       </p>
@@ -210,7 +218,7 @@
 
         <div class="row">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="/assets/img/headshot.png" class="img-fluid" alt="">
+            <img src="/assets/img/headshot.jpg" class="img-fluid" alt="Alex Sheppert" loading="lazy" decoding="async">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3>Physician-Engineer</h3>
@@ -309,5 +317,5 @@
 
 
 
-  <a href="#header" class="back-to-top d-flex align-items-center justify-content-center"><i
+  <a href="#header" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Back to top"><i
       class="bi bi-arrow-up-short"></i></a>

@@ -249,7 +249,7 @@ h6 {
   min-width: 300px;
 }
 
-#hero h1 {
+#hero .hero-title {
   margin: 0 0 10px 0;
   font-size: 64px;
   font-weight: 700;
@@ -341,7 +341,7 @@ h6 {
     text-align: center;
   }
 
-  #hero h1 {
+  #hero .hero-title {
     font-size: 28px;
     line-height: 36px;
   }
@@ -2576,5 +2576,20 @@ section {
 
   .contact-method__icon {
     margin: 0 auto;
+  }
+}
+
+/* Respect prefers-reduced-motion: neutralize AOS reveals and limit motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

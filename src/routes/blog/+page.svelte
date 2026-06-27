@@ -1,17 +1,24 @@
 <svelte:head>
 	<title>Blog - Alex Sheppert</title>
+	<meta name="description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
+	<link rel="canonical" href="https://alexsheppert.com/blog" />
+	<meta property="og:title" content="Blog - Alex Sheppert" />
+	<meta property="og:description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
+	<meta property="og:url" content="https://alexsheppert.com/blog" />
+	<meta name="twitter:title" content="Blog - Alex Sheppert" />
+	<meta name="twitter:description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
 </svelte:head>
 
 <!-- ======= Header ======= -->
 <header id="header">
 	<div class="d-flex flex-column">
 		<div class="profile">
-			<img src="/assets/img/headshot.png" alt="" class="img-fluid rounded-circle">
+			<img src="/assets/img/headshot.jpg" alt="" class="img-fluid rounded-circle">
 			<h1 class="text-light"><a href="/">Alex Sheppert, DO, PhD, MBA</a></h1>
 			<div class="social-links mt-3 text-center">
-				<a href="https://x.com/alexsheppert" class="twitter"><i class="bx bxl-twitter"></i></a>
-				<a href="https://www.linkedin.com/in/alex-sheppert" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-				<a href="https://github.com/shep-analytics" class="github"><i class="bx bxl-github"></i></a>
+				<a href="https://x.com/alexsheppert" class="twitter" aria-label="X (Twitter)"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+				<a href="https://www.linkedin.com/in/alex-sheppert" class="linkedin" aria-label="LinkedIn"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+				<a href="https://github.com/shep-analytics" class="github" aria-label="GitHub"><i class="bx bxl-github" aria-hidden="true"></i></a>
 			</div>
 		</div>
 
@@ -139,4 +146,4 @@
 
 </main>
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#header" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>

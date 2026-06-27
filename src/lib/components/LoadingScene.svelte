@@ -15,7 +15,6 @@
 	let reducedMotion = false;
 
 	const finish = () => {
-		console.log('LoadingScene: finish called', { done });
 		if (done) return;
 		done = true;
 
@@ -25,7 +24,6 @@
 		tl = gsap.timeline({
 			defaults: { ease: 'power2.out' },
 			onComplete: () => {
-				console.log('LoadingScene: dispatching complete');
 				dispatch('complete');
 			}
 		});
@@ -33,22 +31,16 @@
 	};
 
 	onMount(() => {
-		console.log('LoadingScene: onMount');
-		console.log('LoadingScene: targetCount is', targetCount, typeof targetCount);
 		reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
-		console.log('LoadingScene: reducedMotion detected as', reducedMotion);
 		
 		if (reducedMotion) {
-			console.log('LoadingScene: scheduling immediate finish (reduced motion)');
 			gsap.delayedCall(0.1, finish);
 		} else {
-			console.log('LoadingScene: scheduling watchdog (6.5s)');
 			watchdog = gsap.delayedCall(6.5, finish);
 		}
 	});
 
 	onDestroy(() => {
-		console.log('LoadingScene: onDestroy');
 		tl?.kill();
 		watchdog?.kill();
 	});
