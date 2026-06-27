@@ -181,7 +181,7 @@
 						<ul>
 							<li>"Prediction of migraine status from cervical radiographs using a machine learning model," Roseman Research Symposium 2023</li>
 							<li>"Ketamine vs etomidate as an induction agent in RSI in patients with COVID-19," AAEM Scientific Assembly 2024 (<a href="https://www.aaem.org/wp-content/uploads/2024/04/Poster-Listing-FINAL-LISTING.pdf">poster listing</a>)</li>
-							<li>"Number of active social media users as a predictor of HIPAA infringements," Roseman Research Symposium 2022</li>
+							<li><a href="https://ecommons.roseman.edu/researchsymposium/2022/postergroup6/4/">"Number of active social media users as a predictor of HIPAA infringements,"</a> Roseman Research Symposium 2022</li>
 							<li>"A Case of Recurrent UTIs and Acute Appendicitis in a Patient with a History of Appendectomy," Noorda Research Symposium 2024</li>
 							<li>"Pigtail Catheter Retention in emergent thoracostomy: A Case Review," ACOS Annual Clinical Assembly 2022 (<a href="https://www.eventScribe.com/upload/planner/PDFs/2022ACAProgramBook_Digital_86.pdf">program book</a>)</li>
 						</ul>
