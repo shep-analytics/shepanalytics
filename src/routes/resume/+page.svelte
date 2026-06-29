@@ -217,6 +217,15 @@
 						<p>Invitation-only organization for senior technology executives</p>
 					</div>
 
+					<h3 class="resume-title">Honors &amp; Activities</h3>
+
+					<div class="resume-item">
+						<h4>Chess</h4>
+						<ul>
+							<li><a href="https://worldchess.com/profile/879467">Recognized chess title — Arena Candidate Master, FIDE Online Arena</a></li>
+						</ul>
+					</div>
+
 				</div>
 
 			</div>
