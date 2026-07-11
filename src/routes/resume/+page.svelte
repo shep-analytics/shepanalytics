@@ -7,6 +7,7 @@
 	<meta property="og:url" content="https://www.alexsheppert.com/resume" />
 	<meta name="twitter:title" content="Resume - Alex Sheppert" />
 	<meta name="twitter:description" content="Resume of Alex Sheppert, DO/PhD/MBA — internal medicine physician, AI researcher, and healthcare technology founder." />
+	{@html `<script type="application/ld+json">${JSON.stringify({"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Alex Sheppert","honorificSuffix":"DO, PhD, MBA","jobTitle":"Internal Medicine Resident Physician; Founder & CTO, Matic Inside","url":"https://www.alexsheppert.com/resume","image":"https://www.alexsheppert.com/assets/img/headshot.jpg","worksFor":{"@type":"Organization","name":"Matic Inside","url":"https://maticinside.ai/"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Noorda College of Osteopathic Medicine"},{"@type":"CollegeOrUniversity","name":"Capitol Technology University"},{"@type":"CollegeOrUniversity","name":"Utah Valley University"},{"@type":"CollegeOrUniversity","name":"Brigham Young University"}],"sameAs":["https://www.linkedin.com/in/alex-sheppert","https://x.com/alexsheppert","https://councils.forbes.com/profile/Alexander-Sheppert-Founder-CTO-Resident-Internal-Medicine-Physician-Matic/7a750b68-cbe0-4865-b09a-84f88eb026cd"]}})}<\/script>`}
 </svelte:head>
 
 <!-- ======= Header ======= -->
@@ -74,7 +75,7 @@
 					</div>
 
 					<div class="resume-item">
-						<h4>Founder - CEO - CTO</h4>
+						<h4>Founder &amp; CTO</h4>
 						<h5>January 2023 - Present</h5>
 						<p><em><a href="https://maticinside.ai/">Matic Inside</a> (formerly Scribematic)</em></p>
 						<ul>
@@ -110,8 +111,8 @@
 						<p><em><a href="https://www.udemy.com/">Udemy</a>/Online</em></p>
 						<ul>
 							<li>Created a programming course on <a href="https://www.udemy.com/">Udemy</a> for Python</li>
-							<li>More than 37,000 students worldwide have taken the course</li>
-							<li>Course maintains a rating of 4.8 stars after hundreds of ratings</li>
+							<li>More than 37,000 students worldwide have taken the course (as of July 2026)</li>
+							<li>Course maintains a rating of 4.8 stars after hundreds of ratings (as of July 2026)</li>
 							<li><a href="https://www.udemy.com/user/alex-sheppert/">My Udemy Profile</a></li>
 						</ul>
 					</div>
@@ -129,14 +130,14 @@
 					</div>
 
 					<div class="resume-item">
-						<h4>Doctor of Artificial Intelligence (PhD)</h4>
+						<h4>PhD in Artificial Intelligence</h4>
 						<h5>2021 - May 2025</h5>
 						<p><em><a href="https://www.captechu.edu/">Capitol Technology University</a></em></p>
 						<p>Dissertation: <a href="https://www.proquest.com/docview/3213155845">"Overcoming Overfitting: A New Approach to ML Generalization"</a></p>
 					</div>
 
 					<div class="resume-item">
-						<h4>Masters in Business Administration (MBA)</h4>
+						<h4>Master of Business Administration (MBA)</h4>
 						<h5>2022 - 2024</h5>
 						<p><em><a href="https://www.uvu.edu/">Utah Valley University</a></em></p>
 					</div>
@@ -150,8 +151,9 @@
 					<h3 class="resume-title">Publications</h3>
 
 					<div class="resume-item">
-						<h4>Patent</h4>
+						<h4>Patents</h4>
 						<ul>
+							<li><a href="https://patents.google.com/patent/US20260057887A1/">"System and Method Using Speech-to-Text Artificial Intelligence to Transcribe a Doctor-Patient Interaction Into a Text Form,"</a> Application #19/372,012, 2026 (patent pending)</li>
 							<li><a href="https://patents.google.com/patent/US11875339B1/">"Method and apparatus for collecting and distributing secured data,"</a> Patent #11875339, 2024</li>
 						</ul>
 					</div>
@@ -177,7 +179,7 @@
 					</div>
 
 					<div class="resume-item">
-						<h4>Conference Publications</h4>
+						<h4>Abstracts &amp; Posters</h4>
 						<ul>
 							<li>"Prediction of migraine status from cervical radiographs using a machine learning model," Roseman Research Symposium 2023</li>
 							<li>"Ketamine vs etomidate as an induction agent in RSI in patients with COVID-19," AAEM Scientific Assembly 2024 (<a href="https://www.aaem.org/wp-content/uploads/2024/04/Poster-Listing-FINAL-LISTING.pdf">poster listing</a>)</li>
@@ -302,98 +304,58 @@
 				<p>Technical capabilities and domain expertise</p>
 			</div>
 
-			<div class="row skills-content">
+			<div class="research-grid" data-aos="fade-up">
 
-				<div class="col-lg-6" data-aos="fade-up">
-
-					<div class="progress">
-						<span class="skill">Python <i class="val">100%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
+				<div class="research-card">
+					<div class="research-card__icon">
+						<i class="bi bi-chat-left-text"></i>
 					</div>
-
-					<div class="progress">
-						<span class="skill">Machine Learning / AI <i class="val">100%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
+					<h3>Clinical NLP &amp; Ambient Documentation</h3>
+					<p>Built Matic Inside's ambient documentation platform from prototype to production.</p>
+					<div class="research-card__tags">
+						<span>Ambient Scribe</span>
+						<span>Clinical NLP</span>
+						<span>Workflow Integration</span>
 					</div>
-
-					<div class="progress">
-						<span class="skill">Data Analytics / Econometrics <i class="val">100%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-
-					<div class="progress">
-						<span class="skill">Medical Documentation <i class="val">100%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-
-					<div class="progress">
-						<span class="skill">Cloud Architecture (AWS, GCP, Azure) <i class="val">90%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-
-					<div class="progress">
-						<span class="skill">Javascript / React / Svelte <i class="val">90%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-
 				</div>
 
-				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-					<div class="progress">
-						<span class="skill">C++ / Rust <i class="val">85%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
+				<div class="research-card">
+					<div class="research-card__icon">
+						<i class="bi bi-graph-up-arrow"></i>
 					</div>
-
-					<div class="progress">
-						<span class="skill">Solidity / Blockchain <i class="val">95%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
+					<h3>Model Evaluation &amp; Robustness</h3>
+					<p>Peer-reviewed research on ML generalization, temporal contamination, and diagnostic reliability.</p>
+					<div class="research-card__tags">
+						<span>Generalization</span>
+						<span>Benchmarking</span>
+						<span>Diagnostic Reliability</span>
 					</div>
+				</div>
 
-					<div class="progress">
-						<span class="skill">Financial Analysis / Quant Trading <i class="val">100%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
+				<div class="research-card">
+					<div class="research-card__icon">
+						<i class="bi bi-cpu"></i>
 					</div>
-
-					<div class="progress">
-						<span class="skill">Django / Flask <i class="val">90%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
+					<h3>Full-Stack ML Engineering</h3>
+					<p>Python/PyTorch pipelines, cloud deployment, and production clinical integrations.</p>
+					<div class="research-card__tags">
+						<span>Python / PyTorch</span>
+						<span>Cloud Deployment</span>
+						<span>Clinical Integration</span>
 					</div>
+				</div>
 
-					<div class="progress">
-						<span class="skill">Kubernetes / Linux <i class="val">85%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
+				<div class="research-card">
+					<div class="research-card__icon">
+						<i class="bi bi-bank"></i>
 					</div>
-
-					<div class="progress">
-						<span class="skill">Unity Game Development <i class="val">75%</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
+					<h3>Product &amp; Company Leadership</h3>
+					<p>Founded and scaled a clinical AI company while completing DO + PhD.</p>
+					<div class="research-card__tags">
+						<span>Founding</span>
+						<span>Fundraising</span>
+						<span>Team Building</span>
 					</div>
-
 				</div>
 
 			</div>
@@ -402,31 +364,10 @@
 			<div class="section-title mt-5">
 				<h2>Languages</h2>
 			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="progress">
-						<span class="skill">English <i class="val">Native</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="progress">
-						<span class="skill">Spanish <i class="val">Fluent</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="progress">
-						<span class="skill">Yucatecan Mayan <i class="val">Conversational</i></span>
-						<div class="progress-bar-wrap">
-							<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-				</div>
+			<div class="research-card__tags justify-content-center" data-aos="fade-up">
+				<span>English — Native</span>
+				<span>Spanish — Fluent</span>
+				<span>Yucatecan Mayan — Conversational</span>
 			</div>
 
 		</div>

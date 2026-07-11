@@ -234,6 +234,15 @@
 	// Current time for animation
 	let now = 0;
 
+	// Click pulses: expanding EKG rings emitted on click/tap (desktop)
+	let clickPulses = [];
+	let clickPulseSeq = 0;
+	const clickPulseDuration = 650;
+	let heartBumpStart = -10000;
+
+	// Heart scale: idle beat handled in CSS; this adds a bump on click
+	$: heartScale = 1 + Math.max(0, 1 - (now - heartBumpStart) / 320) * 0.35;
+
 	// Compute polyline with traveling EKG waveform
 	$: polyline = (() => {
 		if (pathPoints.length < 2) return '';
@@ -332,7 +341,12 @@
 	// Animation loop
 	const animate = () => {
 		now = performance.now();
-		
+
+		// Prune finished click pulses
+		if (clickPulses.length && now - clickPulses[0].start > clickPulseDuration) {
+			clickPulses = clickPulses.filter((p) => now - p.start < clickPulseDuration);
+		}
+
 		// Handle retraction after inactivity
 		if (isMobileViewport) {
 			if (mobileTapActive) {
@@ -411,10 +425,20 @@
 		window.addEventListener('mousemove', onMove, { passive: true });
 
 		onTap = (event) => {
-			if (!enabled || !isMobileViewport) return;
+			if (!enabled) return;
 			const point = event.touches?.[0] ?? event.changedTouches?.[0] ?? event;
 			if (!point) return;
-			triggerMobilePulse(point.clientX, point.clientY);
+			if (isMobileViewport) {
+				triggerMobilePulse(point.clientX, point.clientY);
+			} else {
+				// Primary button only — right/middle click shouldn't pulse
+				if (event.button !== undefined && event.button !== 0) return;
+				clickPulses = [
+					...clickPulses,
+					{ id: clickPulseSeq++, x: point.clientX, y: point.clientY, start: performance.now() }
+				];
+				heartBumpStart = performance.now();
+			}
 		};
 
 		if (window.PointerEvent) {
@@ -476,18 +500,42 @@
 		stroke-linejoin="round"
 	/>
 
+	{#each clickPulses as p (p.id)}
+		{@const progress = Math.min(1, (now - p.start) / clickPulseDuration)}
+		<circle
+			cx={p.x}
+			cy={p.y}
+			r={4 + progress * 52}
+			fill="none"
+			stroke="#65f7ff"
+			stroke-width={2.4 - progress * 1.8}
+			opacity={(1 - progress) * 0.65}
+		/>
+		<circle
+			cx={p.x}
+			cy={p.y}
+			r={2 + progress * 26}
+			fill="none"
+			stroke="#9df9ff"
+			stroke-width={1.6 - progress * 1.2}
+			opacity={(1 - progress) * 0.5}
+		/>
+	{/each}
+
 	<g
-		transform={`translate(${mouseX} ${mouseY})`}
+		transform={`translate(${mouseX} ${mouseY}) scale(${heartScale})`}
 		opacity={enabled && (!isMobileViewport || mobileTapActive) ? 1 : 0}
 	>
-		<!-- small heart shape -->
-		<path
-			d="M 0 3 C -1.5 0, -5 0, -5 -3 C -5 -6, -2.5 -7, 0 -4.5 C 2.5 -7, 5 -6, 5 -3 C 5 0, 1.5 0, 0 3 Z"
-			fill="#65f7ff"
-			stroke="#65f7ff"
-			stroke-width="1"
-			opacity="0.9"
-		/>
+		<!-- small heart shape; idle lub-dub in CSS, click bump via heartScale -->
+		<g class="heartbeat">
+			<path
+				d="M 0 3 C -1.5 0, -5 0, -5 -3 C -5 -6, -2.5 -7, 0 -4.5 C 2.5 -7, 5 -6, 5 -3 C 5 0, 1.5 0, 0 3 Z"
+				fill="#65f7ff"
+				stroke="#65f7ff"
+				stroke-width="1"
+				opacity="0.9"
+			/>
+		</g>
 	</g>
 </svg>
 
@@ -502,5 +550,35 @@
 
 	:global(body.stethoscope-cursor) {
 		cursor: none;
+	}
+
+	.heartbeat {
+		transform-box: fill-box;
+		transform-origin: center;
+		animation: heart-lubdub 1.5s ease-in-out infinite;
+	}
+
+	/* lub-dub matching the trail's QRS period (1.5s) */
+	@keyframes heart-lubdub {
+		0%,
+		26%,
+		100% {
+			transform: scale(1);
+		}
+		6% {
+			transform: scale(1.16);
+		}
+		12% {
+			transform: scale(1);
+		}
+		18% {
+			transform: scale(1.1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.heartbeat {
+			animation: none;
+		}
 	}
 </style>

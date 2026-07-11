@@ -1,11 +1,11 @@
 <svelte:head>
-	<title>Blog - Alex Sheppert</title>
+	<title>Writing - Alex Sheppert</title>
 	<meta name="description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
 	<link rel="canonical" href="https://www.alexsheppert.com/blog" />
-	<meta property="og:title" content="Blog - Alex Sheppert" />
+	<meta property="og:title" content="Writing - Alex Sheppert" />
 	<meta property="og:description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
 	<meta property="og:url" content="https://www.alexsheppert.com/blog" />
-	<meta name="twitter:title" content="Blog - Alex Sheppert" />
+	<meta name="twitter:title" content="Writing - Alex Sheppert" />
 	<meta name="twitter:description" content="Writing by Alex Sheppert, DO/PhD/MBA — essays on medicine, artificial intelligence, and healthcare technology." />
 </svelte:head>
 
@@ -43,7 +43,7 @@
 				<h2>Writings</h2>
 				<ol>
 					<li><a href="/">Home</a></li>
-					<li>Blog</li>
+					<li>Writing</li>
 				</ol>
 			</div>
 		</div>
@@ -63,7 +63,7 @@
 				<a href="https://www.forbes.com/councils/forbestechcouncil/2026/02/25/taste-the-most-valuable-skill-in-the-new-world-ai-economy/" target="_blank" rel="noopener noreferrer" class="blog-card-link" data-aos="fade-up">
 					<article class="blog-card">
 						<div class="blog-card__meta">
-							<span class="blog-card__tag">Forbes</span>
+							<span class="blog-card__tag">Forbes Technology Council</span>
 							<span class="blog-card__date">Feb 25, 2026</span>
 						</div>
 						<h3>Taste: The Most Valuable Skill In The New World AI Economy</h3>

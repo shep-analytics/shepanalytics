@@ -1,10 +1,3 @@
-/**
-* Template Name: iPortfolio - v3.7.0
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -498,51 +491,69 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Akills
+# Media Kit
 --------------------------------------------------------------*/
-.skills .progress {
-  height: 60px;
-  display: block;
-  background: none;
-  border-radius: 0;
+.media-block {
+  background: #fff;
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(4, 11, 20, 0.06);
 }
 
-.skills .progress .skill {
-  padding: 0;
-  margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
+.media-block h3 {
+  font-size: 22px;
+  font-weight: 700;
   color: #050d18;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #149ddd;
+  display: inline-block;
 }
 
-.skills .progress .skill .val {
-  float: right;
-  font-style: normal;
+.media-bio {
+  margin-bottom: 24px;
 }
 
-.skills .progress-bar-wrap {
-  background: #dce8f8;
-  height: 10px;
+.media-bio:last-child {
+  margin-bottom: 0;
 }
 
-.skills .progress-bar {
-  height: 10px;
-  transition: width 0.9s ease;
-  background-color: #149ddd;
+.media-bio h4 {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #149ddd;
+  margin-bottom: 8px;
 }
 
-/* Set progress bar widths based on aria-valuenow */
-.skills .progress-bar[aria-valuenow="100"] { width: 100%; }
-.skills .progress-bar[aria-valuenow="95"] { width: 95%; }
-.skills .progress-bar[aria-valuenow="90"] { width: 90%; }
-.skills .progress-bar[aria-valuenow="85"] { width: 85%; }
-.skills .progress-bar[aria-valuenow="80"] { width: 80%; }
-.skills .progress-bar[aria-valuenow="75"] { width: 75%; }
-.skills .progress-bar[aria-valuenow="70"] { width: 70%; }
-.skills .progress-bar[aria-valuenow="60"] { width: 60%; }
-.skills .progress-bar[aria-valuenow="50"] { width: 50%; }
+.media-bio p {
+  margin-bottom: 0;
+  line-height: 1.75;
+}
+
+.media-facts,
+.media-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.media-facts li,
+.media-links li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eef4fb;
+}
+
+.media-facts li:last-child,
+.media-links li:last-child {
+  border-bottom: none;
+}
+
+.media-links a {
+  font-weight: 600;
+}
 
 /*--------------------------------------------------------------
 # Blog
@@ -2191,10 +2202,6 @@ section {
 
   .section-title p {
     font-size: 15px;
-  }
-
-  .skills .progress {
-    height: 50px;
   }
 
   .resume .resume-item {

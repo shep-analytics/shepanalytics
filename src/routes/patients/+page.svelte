@@ -58,6 +58,15 @@
 				<p>For patients under my care at the Vancouver Clinic.</p>
 			</div>
 
+			<div class="row align-items-center patient-intro">
+				<div class="col-lg-4" data-aos="fade-right">
+					<img src="/assets/img/headshot-clinical.jpg" class="img-fluid rounded" alt="Dr. Alex Sheppert in a white coat at the clinic" fetchpriority="high" decoding="async">
+				</div>
+				<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+					<p>Welcome. This page has the information current patients need most: where I practice, how to reach my care team, and how to use your patient portal.</p>
+				</div>
+			</div>
+
 			<div class="patient-content" data-aos="fade-up">
 
 				<div class="patient-alert">
@@ -105,7 +114,7 @@
 						</div>
 						<div class="contact-method__content">
 							<h4>Call The Vancouver Clinic</h4>
-							<a href="tel:360-882-2778" class="contact-method__phone">(360) 882-2778</a>
+							<a href="tel:+13608822778" class="contact-method__phone">(360) 882-2778</a>
 							<p>Patient Service Center: Monday - Friday, 7am - 5:30pm<br>Nurse Advice Line: Available 24/7</p>
 						</div>
 					</div>

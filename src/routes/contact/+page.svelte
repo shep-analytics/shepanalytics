@@ -49,7 +49,114 @@
 		</div>
 	</section>
 
-	<!-- ======= Case Study Section (MOVED TO TOP) ======= -->
+	<!-- ======= Contact Section (direct contact first for journalists) ======= -->
+	<section id="contact-info" class="contact-page section-bg">
+		<div class="container">
+
+			<div class="section-title">
+				<h2>Get in Touch</h2>
+				<p>Reach out to start a conversation.</p>
+			</div>
+
+			<div class="media-kit-callout" data-aos="fade-up">
+				<p><strong>Journalists:</strong> <a href="/media">see the Media Kit &rarr;</a></p>
+			</div>
+
+			<div class="row contact-card-grid" data-aos="fade-up">
+
+				<div class="col-lg-6">
+					<div class="contact-card">
+						<div class="contact-card__icon">
+							<i class="bi bi-envelope"></i>
+						</div>
+						<div class="contact-card__content">
+							<h3>Email</h3>
+							<p>For consulting, advisory, and partnership opportunities</p>
+							<a href="mailto:admin@sheppertenterprises.com" class="contact-card__link contact-card__email">
+								admin@sheppertenterprises.com
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="contact-card">
+						<div class="contact-card__icon">
+							<i class="bx bxl-twitter"></i>
+						</div>
+						<div class="contact-card__content">
+							<h3>X / Twitter DM</h3>
+							<p>For quick questions or to say hello</p>
+							<a href="https://x.com/alexsheppert" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+								@alexsheppert
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="contact-card">
+						<div class="contact-card__icon">
+							<i class="bi bi-geo-alt"></i>
+						</div>
+						<div class="contact-card__content">
+							<h3>Location</h3>
+							<p>Based in the Pacific Northwest, available globally</p>
+							<span class="contact-card__text">Vancouver, WA, USA</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="contact-card">
+						<div class="contact-card__icon">
+							<i class="bi bi-calendar-check"></i>
+						</div>
+						<div class="contact-card__content">
+							<h3>Availability</h3>
+							<p>Taking on select consulting and advisory engagements</p>
+							<span class="contact-card__text">Limited availability during residency</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="contact-cta" data-aos="fade-up">
+				<h3>Ready to Connect?</h3>
+				<p>Tell me about what you're working on. I'm most helpful when I understand the specific problem you're trying to solve. DM me on X for a faster response.</p>
+				<div class="contact-cta__buttons">
+					<a href="mailto:admin@sheppertenterprises.com" class="contact-cta__button">
+						<i class="bi bi-envelope"></i> Send Email
+					</a>
+					<a href="https://x.com/alexsheppert" target="_blank" rel="noopener noreferrer" class="contact-cta__button contact-cta__button--secondary">
+						<i class="bx bxl-twitter"></i> DM on X
+					</a>
+				</div>
+			</div>
+
+			<div class="contact-social" data-aos="fade-up">
+				<h4>Follow My Work</h4>
+				<div class="contact-social__links">
+					<a href="https://x.com/alexsheppert" target="_blank" rel="noopener noreferrer" class="contact-social__link">
+						<i class="bx bxl-twitter"></i>
+						<span>@alexsheppert</span>
+					</a>
+					<a href="https://www.linkedin.com/in/alex-sheppert" target="_blank" rel="noopener noreferrer" class="contact-social__link">
+						<i class="bx bxl-linkedin"></i>
+						<span>LinkedIn</span>
+					</a>
+					<a href="https://github.com/shep-analytics" target="_blank" rel="noopener noreferrer" class="contact-social__link">
+						<i class="bx bxl-github"></i>
+						<span>GitHub</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	<!-- ======= Case Study Section ======= -->
 	<section id="case-study" class="case-study">
 		<div class="container">
 
@@ -81,7 +188,7 @@
 					</div>
 
 					<div class="case-study-results">
-						<h4>Results</h4>
+						<h4>Results <span class="case-study-results__note">(company-reported, as of July 2026)</span></h4>
 						<div class="case-study-stats">
 							<div class="stat">
 								<span class="stat-number">Thousands</span>
@@ -213,109 +320,6 @@
 				<p>Yes, the US produces an outsized share of medical research and new drugs, and that matters. But people cannot afford healthcare. The average emergency room visit costs $2,700. A significant portion of Americans delay or skip care because of cost. The entire system is precarious, built on layers of bureaucracy, regulations stacked on regulations, billing codes, prior authorizations, and administrative overhead that serves no one.</p>
 
 				<p>This system will eventually collapse under its own weight unless technology can make it more efficient. And it can. AI can eliminate hours of documentation. Automation can cut through administrative waste. Better data systems can catch errors before they happen. My focus is on building, using, and pioneering that technology.</p>
-			</div>
-
-		</div>
-	</section>
-
-	<!-- ======= Contact Section ======= -->
-	<section id="contact-info" class="contact-page section-bg">
-		<div class="container">
-
-			<div class="section-title">
-				<h2>Get in Touch</h2>
-				<p>Reach out to start a conversation.</p>
-			</div>
-
-			<div class="row contact-card-grid" data-aos="fade-up">
-
-				<div class="col-lg-6">
-					<div class="contact-card">
-						<div class="contact-card__icon">
-							<i class="bi bi-envelope"></i>
-						</div>
-						<div class="contact-card__content">
-							<h3>Email</h3>
-							<p>For consulting, advisory, and partnership opportunities</p>
-							<a href="mailto:admin@sheppertenterprises.com" class="contact-card__link contact-card__email">
-								admin@sheppertenterprises.com
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<div class="contact-card">
-						<div class="contact-card__icon">
-							<i class="bx bxl-twitter"></i>
-						</div>
-						<div class="contact-card__content">
-							<h3>X / Twitter DM</h3>
-							<p>For quick questions or to say hello</p>
-							<a href="https://x.com/alexsheppert" target="_blank" rel="noopener noreferrer" class="contact-card__link">
-								@alexsheppert
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<div class="contact-card">
-						<div class="contact-card__icon">
-							<i class="bi bi-geo-alt"></i>
-						</div>
-						<div class="contact-card__content">
-							<h3>Location</h3>
-							<p>Based in the Pacific Northwest, available globally</p>
-							<span class="contact-card__text">Vancouver, WA, USA</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<div class="contact-card">
-						<div class="contact-card__icon">
-							<i class="bi bi-calendar-check"></i>
-						</div>
-						<div class="contact-card__content">
-							<h3>Availability</h3>
-							<p>Taking on select consulting and advisory engagements</p>
-							<span class="contact-card__text">Limited availability during residency</span>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="contact-cta" data-aos="fade-up">
-				<h3>Ready to Connect?</h3>
-				<p>Tell me about what you're working on. I'm most helpful when I understand the specific problem you're trying to solve. DM me on X for a faster response.</p>
-				<div class="contact-cta__buttons">
-					<a href="mailto:admin@sheppertenterprises.com" class="contact-cta__button">
-						<i class="bi bi-envelope"></i> Send Email
-					</a>
-					<a href="https://x.com/alexsheppert" target="_blank" rel="noopener noreferrer" class="contact-cta__button contact-cta__button--secondary">
-						<i class="bx bxl-twitter"></i> DM on X
-					</a>
-				</div>
-			</div>
-
-			<div class="contact-social" data-aos="fade-up">
-				<h4>Follow My Work</h4>
-				<div class="contact-social__links">
-					<a href="https://x.com/alexsheppert" target="_blank" rel="noopener noreferrer" class="contact-social__link">
-						<i class="bx bxl-twitter"></i>
-						<span>@alexsheppert</span>
-					</a>
-					<a href="https://www.linkedin.com/in/alex-sheppert" target="_blank" rel="noopener noreferrer" class="contact-social__link">
-						<i class="bx bxl-linkedin"></i>
-						<span>LinkedIn</span>
-					</a>
-					<a href="https://github.com/shep-analytics" target="_blank" rel="noopener noreferrer" class="contact-social__link">
-						<i class="bx bxl-github"></i>
-						<span>GitHub</span>
-					</a>
-				</div>
 			</div>
 
 		</div>

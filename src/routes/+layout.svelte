@@ -4,6 +4,7 @@
 	import StethoscopeCursor from '$lib/components/StethoscopeCursor.svelte';
 
 	let isReady = false;
+	let showBoot = false;
 	let cursorEnabled = true;
 	let aosRefreshed = false;
 
@@ -81,18 +82,48 @@
 	onMount(() => {
 		const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
 		if (reduceMotion) cursorEnabled = false;
+
+		// Boot sequence plays only on the home route, once per session.
+		// Deep links (e.g. /resume shared with a journalist) go straight to content.
+		let seen = false;
+		try {
+			seen = sessionStorage.getItem('synaptic-booted') === '1';
+		} catch (e) {
+			seen = false;
+		}
+		const isHome = window.location.pathname === '/';
+
+		if (isHome && !seen) {
+			showBoot = true;
+			try {
+				sessionStorage.setItem('synaptic-booted', '1');
+			} catch (e) {
+				/* storage unavailable — boot will simply replay */
+			}
+		} else {
+			isReady = true;
+		}
 	});
 </script>
 
-{#if !isReady}
+{#if showBoot && !isReady}
 	<LoadingScene on:complete={() => (isReady = true)} />
 {/if}
+
+<noscript>
+	<style>
+		.app-shell {
+			opacity: 1 !important;
+			pointer-events: auto !important;
+		}
+	</style>
+</noscript>
 
 <div class="cursor-layer">
 	<StethoscopeCursor enabled={cursorEnabled} />
 </div>
 
-<div class:ready={isReady} class="app-shell">
+<div class:ready={isReady} class:preloaded={showBoot} class="app-shell">
 	<slot />
 </div>
 
@@ -108,11 +139,29 @@
 		opacity: 0;
 		pointer-events: none;
 		transition: opacity 800ms ease;
+		/* Wall-clock failsafe: CSS animations are unaffected by rAF throttling in
+		   background tabs, so content becomes visible even if JS never flips isReady. */
+		animation: shell-failsafe 0.8s ease 9s forwards;
+	}
+
+	/* While the boot overlay (opaque, z-9999) is up, keep the content beneath it
+	   fully painted — the overlay then fades directly into rendered content with
+	   no white crossfade mixing. */
+	.app-shell.preloaded {
+		opacity: 1;
 	}
 
 	.app-shell.ready {
 		opacity: 1;
 		pointer-events: auto;
+		animation: none;
+	}
+
+	@keyframes shell-failsafe {
+		to {
+			opacity: 1;
+			pointer-events: auto;
+		}
 	}
 
 	/* Ensure AOS elements are visible when app is ready, even if AOS fails */

@@ -242,7 +242,7 @@
               </div>
             </div>
             <p>
-              I completed my DO and PhD simultaneously while building <a href="https://maticinside.ai/">Matic Inside</a>, a clinical AI company now helping thousands of physicians reduce documentation burden. My research focuses on optimizing machine learning models and helping them generalize to clinical settings.
+              I completed my DO and PhD simultaneously while building <a href="https://maticinside.ai/">Matic Inside</a>, a clinical AI company now helping physicians across the US reduce documentation burden. My research focuses on optimizing machine learning models and helping them generalize to clinical settings.
             </p>
             <p>
               <strong>Currently:</strong> Internal Medicine resident at Salmon Creek, researching machine learning robustness in clinical applications, and advising healthcare AI startups from a technical standpoint.
@@ -260,7 +260,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Blog</h2>
+          <h2>Writing</h2>
           <p>Short reads on clinical informatics, AI research, and building real-world products.</p>
         </div>
 

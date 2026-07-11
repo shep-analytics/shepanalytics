@@ -2,7 +2,6 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { Canvas, T } from '@threlte/core';
 	import NetworkGroup from './NetworkGroup.svelte';
-	import { gsap } from 'gsap';
 	import * as THREE from 'three';
 	import Axon from './Axon.svelte';
 	import Neuron from './Neuron.svelte';
@@ -140,6 +139,19 @@
 		axons = [...axons, { id: axonId++, fromId, toId, curve }];
 	};
 
+	const pushPulse = (from, to, targetId, color, baseDuration, jitter) => {
+		pulses = [
+			...pulses,
+			{
+				id: pulseId++,
+				curve: createCurve(from, to),
+				targetId,
+				color,
+				duration: baseDuration + Math.random() * jitter
+			}
+		];
+	};
+
 	const spawnPulse = () => {
 		if (pulses.length >= maxPulses || axons.length === 0) return;
 
@@ -149,19 +161,7 @@
 		const to = neuronById(reverse ? axon.fromId : axon.toId)?.pos;
 		if (!from || !to) return;
 
-		const curve = createCurve(from, to);
-		const targetId = reverse ? axon.fromId : axon.toId;
-
-		pulses = [
-			...pulses,
-			{
-				id: pulseId++,
-				curve,
-				targetId,
-				color: '#65f7ff',
-				duration: 0.55 + Math.random() * 0.25
-			}
-		];
+		pushPulse(from, to, reverse ? axon.fromId : axon.toId, '#65f7ff', 0.55, 0.25);
 	};
 
 	const onPulseArrive = (id, targetId) => {
@@ -170,10 +170,69 @@
 	};
 
 	const scheduleComplete = () => {
-		completeCall?.kill?.();
-		completeCall = gsap.delayedCall(0.9, () => {
+		clearTimeout(completeCall);
+		// setTimeout instead of a rAF-driven GSAP timer so completion still
+		// fires in throttled background tabs.
+		completeCall = setTimeout(() => {
 			onComplete();
-		});
+		}, 900);
+	};
+
+	// --- Pointer reactivity: neurons near the cursor fire and emit pulses ---
+	// NetworkGroup mutates this in place each frame, so the projection below
+	// always uses the group's true rotation (no drift under rAF throttling).
+	const groupRotation = { x: 0, y: 0 };
+	let lastFire = 0;
+	let onPointerMove;
+	let onPointerDown;
+
+	const fireAt = (clientX, clientY, burst = false) => {
+		if (!neurons.length || !containerWidth || !containerHeight) return;
+
+		const ndcX = (clientX / containerWidth) * 2 - 1;
+		const ndcY = -((clientY / containerHeight) * 2 - 1);
+
+		const cosY = Math.cos(groupRotation.y);
+		const sinY = Math.sin(groupRotation.y);
+		const cosX = Math.cos(groupRotation.x);
+		const sinX = Math.sin(groupRotation.x);
+		const aspect = containerWidth / containerHeight;
+		const halfH = Math.tan((48 * Math.PI) / 360);
+
+		let best = null;
+		let bestD = Infinity;
+		for (const n of neurons) {
+			const [x, y, z] = n.pos;
+			const x1 = x * cosY + z * sinY;
+			const z1 = -x * sinY + z * cosY;
+			const y1 = y * cosX - z1 * sinX;
+			const z2 = y * sinX + z1 * cosX;
+			const dist = 7 - z2;
+			if (dist <= 0.1) continue;
+			const sx = x1 / (dist * halfH * aspect);
+			const sy = y1 / (dist * halfH);
+			const d = Math.hypot(sx - ndcX, sy - ndcY);
+			if (d < bestD) {
+				bestD = d;
+				best = n;
+			}
+		}
+
+		if (!best || bestD > (burst ? 0.9 : 0.4)) return;
+
+		triggers = { ...triggers, [best.id]: (triggers[best.id] ?? 0) + 1 };
+
+		const connected = axons.filter((a) => a.fromId === best.id || a.toId === best.id);
+		const limit = burst ? connected.length : 2;
+		let spawned = 0;
+		for (const axon of connected) {
+			if (spawned >= limit || pulses.length >= maxPulses + 6) break;
+			const outward = axon.fromId === best.id;
+			const to = neuronById(outward ? axon.toId : axon.fromId)?.pos;
+			if (!to) continue;
+			pushPulse(best.pos, to, outward ? axon.toId : axon.fromId, '#9df9ff', 0.35, 0.2);
+			spawned += 1;
+		}
 	};
 
 	onMount(() => {
@@ -239,18 +298,32 @@
 			}
 		};
 
-		spawnTimer = setInterval(spawnWave, 520);
+		spawnTimer = setInterval(spawnWave, 420);
 
 		pulseTimer = setInterval(() => {
 			spawnPulse();
-		}, 380);
+		}, 300);
+
+		onPointerMove = (e) => {
+			const now = performance.now();
+			if (now - lastFire < 110) return;
+			lastFire = now;
+			fireAt(e.clientX, e.clientY);
+		};
+		onPointerDown = (e) => {
+			fireAt(e.clientX, e.clientY, true);
+		};
+		window.addEventListener('mousemove', onPointerMove, { passive: true });
+		window.addEventListener('pointerdown', onPointerDown, { passive: true });
 	});
 
 	onDestroy(() => {
 		if (spawnTimer) clearInterval(spawnTimer);
 		if (pulseTimer) clearInterval(pulseTimer);
 		if (onResize) window.removeEventListener('resize', onResize);
-		completeCall?.kill?.();
+		if (onPointerMove) window.removeEventListener('mousemove', onPointerMove);
+		if (onPointerDown) window.removeEventListener('pointerdown', onPointerDown);
+		clearTimeout(completeCall);
 	});
 </script>
 
@@ -271,7 +344,7 @@
 			<T.PointLight position={[-4, -2, 6]} intensity={1.4} color="#6f6bff" />
 
 			<!-- <NetworkGroup> -->
-			<NetworkGroup>
+			<NetworkGroup rotationState={groupRotation}>
 				{#each axons as axon (axon.id)}
 					<Axon curve={axon.curve} />
 				{/each}
