@@ -168,6 +168,7 @@
 					<div class="resume-item">
 						<h4>Peer Reviewed Articles</h4>
 						<ul>
+							<li><a href="https://journalofhealthcarefinance.com/index.php/jhf/article/view/301">"Bidirectional AI in Claims and Documentation: Co-evolution, Denial Inflation, and the Case for Transparency,"</a> Journal of Healthcare Finance (Commentary), Vol 50, Issue 1, Fall 2026</li>
 							<li><a href="https://doi.org/10.1093/jamia/ocag069">"Reasoning or reciting? A temporal contamination audit of large language models in clinical medicine,"</a> Journal of the American Medical Informatics Association (JAMIA), 2026</li>
 							<li><a href="https://doi.org/10.1016/j.ijmedinf.2026.106550">"Large language models exhibit greater diagnostic anchoring than physicians in a forced-choice vignette study,"</a> International Journal of Medical Informatics, Vol 219, 2026</li>
 							<li><a href="https://doi.org/10.7759/cureus.111172">"Rethinking Serotonin in Depression: Toward a Modern Clinical Framework,"</a> Cureus Journal of Medical Science (Editorial), 2026</li>
